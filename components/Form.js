@@ -1,9 +1,9 @@
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
 
-import styled from 'styled-components';
-import { BsPlusCircleFill } from 'react-icons/bs';
+import styled from "styled-components";
+import { BsPlusCircleFill } from "react-icons/bs";
 
-export default function Form({ onAddCard }) {
+export default function Form({ onAddQuestion }) {
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -11,19 +11,19 @@ export default function Form({ onAddCard }) {
     const text = form.text.value;
     const name = form.name.value;
 
-    const newCard = {
+    const newQuestion = {
       id: nanoid(),
       text: text,
       name: name,
     };
 
-    onAddCard(newCard);
+    onAddQuestion(newQuestion);
 
     form.reset();
   }
 
   return (
-    <EntryForm onSubmit={handleSubmit}>
+    <EntryForm onSubmit={handleSubmit} autoComplete="off">
       <InputWrapper>
         <label htmlFor="text">
           <ScreenReaderOnly>Enter text</ScreenReaderOnly>

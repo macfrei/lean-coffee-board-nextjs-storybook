@@ -4,37 +4,56 @@ import styled from "styled-components";
 import Card from "../components/Card";
 import Form from "../components/Form";
 
-export default function Home() {
-  const [cardList, setCardList] = useState([]);
+const initialQuestions = [
+  {
+    id: 1,
+    name: "Niklas",
+    text: "Wie schreibe ich nochmal Imports?",
+  },
+  {
+    id: 2,
+    name: "Lene",
+    text: "Können wir noch mehr Testing machen?!",
+  },
+  {
+    id: 3,
+    name: "Merle",
+    text: "Wo ist mein Fahrrad?",
+  },
+  {
+    id: 4,
+    name: "Thomas",
+    text: "Können wir Tailwind machen?",
+  },
+];
 
-  function addCard(newCard) {
-    setCardList([newCard, ...cardList]);
+export default function Home() {
+  const [questions, setQuestions] = useState(initialQuestions);
+
+  function addQuestion(newQuestion) {
+    setQuestions([newQuestion, ...questions]);
   }
 
-  function removeCard(id) {
-    setCardList(cardList.filter((card) => card.id !== id));
+  function removeQuestion(id) {
+    setQuestions(questions.filter((card) => card.id !== id));
   }
 
   return (
     <BoardWrapper>
       <CardGrid>
-        <Card name="Niklas" text="Wie schreibe ich nochmal Imports?" />
-        <Card name="Lene" text="Können wir noch mehr Testing machen?!" />
-        <Card name="Merle" text="Wo ist mein Fahrrad?" />
-        <Card name="Thomas" text="Können wir Tailwind machen?" />
-        {cardList.map((card) => {
+        {questions.map((card) => {
           return (
             <Card
               key={card.id}
               name={card.name}
               text={card.text}
-              onRemoveCard={removeCard}
+              onRemoveQuestion={removeQuestion}
               id={card.id}
             />
           );
         })}
       </CardGrid>
-      <Form onAddCard={addCard} />
+      <Form onAddQuestion={addQuestion} />
     </BoardWrapper>
   );
 }
