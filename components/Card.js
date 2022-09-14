@@ -1,9 +1,9 @@
 import { RiDeleteBinLine } from "react-icons/ri";
 import styled from "styled-components";
 
-export default function Card({ name, text, onRemoveQuestion, id }) {
+export default function Card({ name, text, onRemoveQuestion, id, isDone }) {
   return (
-    <CardWrapper>
+    <CardWrapper isDone={isDone}>
       <IconWrapper>
         <RiDeleteBinLine onClick={() => onRemoveQuestion(id)} />
       </IconWrapper>
@@ -19,8 +19,9 @@ const CardWrapper = styled.li`
   align-content: space-between;
   border-radius: 7px;
   padding: 20px;
-  background-color: white;
+  background-color: ${(props) => (props.isDone ? "#eee" : "white")};
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  ${(props) => props.isDone && "text-decoration: line-through;"}
 `;
 
 const Name = styled.div`
